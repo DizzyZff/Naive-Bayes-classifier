@@ -9,8 +9,9 @@ import math
 
 
 class TrainData:
-    def __init__(self, filename):
+    def __init__(self, filename, split):
         self.filename = filename
+        self.split = split
         self.data = [[]]
         self.categories = []
         self.occ_cat = {}
@@ -39,6 +40,8 @@ class TrainData:
                     self.data.append([])
                 else:
                     self.data[-1].append(line.strip())
+        split = int(len(self.data) * self.split)
+        self.data = self.data[:split]
 
     def get_words(self):
         with open(self.filename, 'r') as f:
