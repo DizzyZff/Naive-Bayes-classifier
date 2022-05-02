@@ -13,6 +13,7 @@ class TrainData:
         self.filename = filename
         self.split = split
         self.data = [[]]
+        self.test_data = [[]]
         self.categories = []
         self.occ_cat = {}
         self.occ_word_in_cat = {}
@@ -41,7 +42,20 @@ class TrainData:
                 else:
                     self.data[-1].append(line.strip())
         split = int(len(self.data) * self.split)
+        self.test_data = self.data[split:]
         self.data = self.data[:split]
+        for data in self.data:
+            data[2] = " ".join(data[2:])
+            pop = len(data) - 3
+            for i in range(pop):
+                data.pop()
+        for data in self.test_data:
+            data[2] = " ".join(data[2:])
+            pop = len(data) - 3
+            for i in range(pop):
+                data.pop()
+
+
 
     def get_words(self):
         with open(self.filename, 'r') as f:
@@ -62,6 +76,7 @@ class TrainData:
     def get_categories(self):
         self.categories = [x[1] for x in self.data if x != []]
         # count duplicates
+        self.occ_cat = {}
         for cat in self.categories:
             if cat in self.occ_cat:
                 self.occ_cat[cat] += 1
@@ -123,3 +138,15 @@ class TrainData:
                 self.log_word_in_cat[cat][word] = -math.log(self.prob_word_in_cat[cat][word], 2)
         return self.log_cat, self.log_word_in_cat
 # end of class
+x = TrainData('bioCorpus.txt', 0.8)
+
+print(x.data)
+print(x.test_data)
+print(x.get_words())
+print(x.get_categories())
+print(x.get_occ_cat())
+print(x.get_occ_word_in_cat())
+print(x.get_freq_cat())
+print(x.get_freq_word_in_cat())
+print(x.get_prob())
+print(x.negative_log())
