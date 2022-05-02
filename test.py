@@ -8,8 +8,12 @@ class Test():
         self.train = TrainData(filename, split)
         self.train_data = self.train.data
         self.test_data = self.train.test_data
-        self.words =[]
+        self.words = []
         self.log_cat_bio = {}
+        self.pred = {}
+        self.normalize()
+        self.get_log_cat_bio()
+        self.prediction()
 
     def normalize(self):
         for data in self.train_data:
@@ -18,31 +22,35 @@ class Test():
         for data in self.test_data:
             for d in data:
                 d = d.lower()
+                #strip punctuation
+                d = d.translate(str.maketrans('', '', string.punctuation))
                 for word in d.split():
-                    word = word.strip('.,!?;:')
-                    print(word)
-                    if word in self.train.words:
+                    if word not in self.words and word in self.train.words:
                         self.words.append(word)
 
     def get_log_cat_bio(self):
         for bio in self.test_data:
-            self.log_cat_bio[bio] = {}
-            for cat in self.train.catagories:
-            # L(C | B) = L(C) + ∑ W ∈ B L(W | C)
-                self.log_cat_bio[bio][cat] = self.train.log_cat_bio[cat]
+            self.log_cat_bio[bio[0]] = {}
+            for cat in self.train.categories:
+                self.log_cat_bio[bio[0]][cat] = self.train.log_cat[cat]
                 for word in self.words:
-                    self.log_cat_bio[bio][cat] += self.train.log_word_cat_bio[word][cat]
-        print(self.log_cat_bio)
+                    if word in bio[0].split() or word in bio[2].split():
+                        self.log_cat_bio[bio[0]][cat] += self.train.log_word_in_cat[cat][word]
         return self.log_cat_bio
 
     def prediction(self):
-        self.get_log_cat_bio()
-        for data in self.test_data:
-            for d in data:
-                d = d.lower()
-                for word in d.split():
-                    word = word.strip('.,!?;:')
-                    if word in self.train.words:
-                        self.words.append(word)
-        print(self.words)
-        return self.words
+        temp = 0
+        for b in self.log_cat_bio:
+            for c in self.log_cat_bio[b]:
+                if self.log_cat_bio[b][c] > temp:
+                    temp = self.log_cat_bio[b][c]
+                    self.pred[b] = c
+        return self.pred
+
+
+x = Test('bioCorpus.txt', 0.8)
+print(x.log_cat_bio)
+print(x.pred)
+
+
+

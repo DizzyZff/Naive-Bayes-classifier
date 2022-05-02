@@ -6,6 +6,7 @@ word). The remaining lines are the biography. You may assume that the characters
 all a-z, A-Z, comma, period, and white space; there are no numbers and no other punctuation.
 """
 import math
+import string
 
 
 class TrainData:
@@ -55,19 +56,16 @@ class TrainData:
             for i in range(pop):
                 data.pop()
 
-
-
     def get_words(self):
-        with open(self.filename, 'r') as f:
-            self.words = f.read().split()
-        # cap to lowercase
-        self.words = [x.lower() for x in self.words]
-        # remove punctuation
-        self.words = [x.strip('.,!?;:') for x in self.words]
         stopwords = open('stopwords.txt', 'r').read().split()
-        self.words = [x for x in self.words if x not in stopwords]
-        self.words = [x for x in self.words if len(x) > 2]
-        self.words = list(set(self.words))
+        for data in self.data:
+            for d in data:
+                # strip punctuation
+                d = d.translate(str.maketrans('', '', string.punctuation))
+                for word in d.split():
+                    word = word.lower()
+                    if word not in self.words and word not in stopwords and len(word) > 2:
+                        self.words.append(word)
         return self.words
 
     def get_data(self):
