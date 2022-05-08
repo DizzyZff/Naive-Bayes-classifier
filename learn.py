@@ -45,16 +45,22 @@ class TrainData:
         split = self.split
         self.test_data = self.data[split:]
         self.data = self.data[:split]
+
         for data in self.data:
-            data[2] = " ".join(data[2:])
-            pop = len(data) - 3
-            for i in range(pop):
-                data.pop()
+            if len(data) > 3:
+                data[2] = " ".join(data[2:])
+                pop = len(data) - 3
+                for i in range(pop):
+                    data.pop()
         for data in self.test_data:
-            data[2] = " ".join(data[2:])
-            pop = len(data) - 3
-            for i in range(pop):
-                data.pop()
+            if len(data) > 3:
+                data[2] = " ".join(data[2:])
+                pop = len(data) - 3
+                for i in range(pop):
+                    data.pop()
+        #remove empty lists
+        self.data = [x for x in self.data if x]
+        self.test_data = [x for x in self.test_data if x]
 
     def get_words(self):
         stopwords = open('stopwords.txt', 'r').read().split()

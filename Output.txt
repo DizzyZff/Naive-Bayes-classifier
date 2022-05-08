@@ -1,0 +1,36 @@
+Lady Gaga.  Prediction: Government.   Wrong.   
+Writer.   Wrong.   
+Music: 21.43%   Government: 28.57%   Scientist: 21.43%   Writer: 28.57%   
+
+Aung San Suu Kyi.  Prediction: Government.   Right.   
+Music: 10.98%   Government: 63.41%   Scientist: 10.98%   Writer: 14.63%   
+
+John Lewis.  Prediction: Government.   Right.   
+Music: 3.52%   Government: 88.25%   Scientist: 3.52%   Writer: 4.7%   
+
+Naguid Mahfouz.  Prediction: Writer.   Right.   
+Music: 4.12%   Government: 17.2%   Scientist: 4.12%   Writer: 74.55%   
+
+Hilary Mantel.  Prediction: Government.   Wrong.   
+Writer.   Right.   
+Music: 9.67%   Government: 40.33%   Scientist: 9.67%   Writer: 40.33%   
+
+Barbara McClintock.  Prediction: Scientist.   Right.   
+Music: 7.09%   Government: 40.94%   Scientist: 42.52%   Writer: 9.45%   
+
+Toni Morrison.  Prediction: Writer.   Right.   
+Music: 0.5%   Government: 0.67%   Scientist: 3.0%   Writer: 95.84%   
+
+Jean Perrin.  Prediction: Scientist.   Right.   
+Music: 10.34%   Government: 13.79%   Scientist: 62.07%   Writer: 13.79%   
+
+Segolene Royal.  Prediction: Government.   Right.   
+Music: 10.98%   Government: 63.41%   Scientist: 10.98%   Writer: 14.63%   
+
+Erik Satie.  Prediction: Music.   Right.   
+Music: 91.49%   Government: 5.78%   Scientist: 1.39%   Writer: 1.33%   
+
+Sin Itiro Tomonaga.  Prediction: Scientist.   Right.   
+Music: 7.09%   Government: 9.45%   Scientist: 42.52%   Writer: 40.94%   
+
+Accuracy: 10 out of 11 = 0.9090909090909091

@@ -35,6 +35,7 @@ class Test:
 
     def get_log_cat_bio(self):
         for bio in self.test_data:
+            print(bio[0])
             self.log_cat_bio[bio[0]] = {}
             for cat in self.train.categories:
                 self.log_cat_bio[bio[0]][cat] = self.train.log_cat[cat]
